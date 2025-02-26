@@ -31,7 +31,7 @@ Le projet est composé de trois parties principales :
 - On utilise le dataset `manueltonneau/french-hate-speech-superset` de Hugging Face.
 - Le jeu de données est divisé en 5000 éléments pour l'entraînement et 2000 éléments pour la validation.
 
-- Dans unn premier utilisation du modèle `distilbert-base-multilingual-cased` puis du modèle `almanach/camembertav2-base`.
+- Dans un premier temps, l'utilisation du modèle `distilbert-base-multilingual-cased` puis du modèle `almanach/camembertav2-base`.
 
 - Les données sont formatées pour être compatibles avec le modèle de classification (`label` au lieu de `labels`).
 
@@ -80,11 +80,17 @@ Le projet est composé de trois parties principales :
 
 ## Tests et Résultats
 
-- Nous avons d'abord essayer de tuner le modèle `distilbert-base-multilingual-cased`, avec un dataset d'entrainement de 5000 et 200 de test, mais nous avions remarqué un biais envers l'islam, chaque phrase contenant le mot islam était considéré comme haineuse, à l'exception notable de "J'aime l'islam". De plus le modèle différenciai les minuscules des majuscules. Une phrase considéré comme haineuse par le modèle en minuscule, n'etait pas haineuse en majuscule.
+## Remarque préliminaire
 
-- Nous avons ensuite essayé de tuner le modèle `almanach/camembertav2-base`, mais les résultats étaient pire que le modèle précédent.
+Nous tenons à préciser que les observations suivantes ne sont que le reflet des résultats obtenus par le modèle et ne constituent en aucun cas une prise de position ou un jugement personnel.
 
-- Nous avons ensuite voulu améliorer les résultats en augmentant le dataset d'entrainement à 10 000 éléments et en repassant sur le modèle `distilbert-base-multilingual-cased`, mais les résultat sont encore pire, toujours un biais envers l'islam, même la phrase "J'aime l'isam" est considéré haineuse.
+## Analyse des résultats
+
+- Nous avons d'abord essayé de tuner le modèle `distilbert-base-multilingual-cased`, avec un dataset d'entraînement de 5000 et 2000 de test, mais nous avons remarqué un biais envers l'islam : chaque phrase contenant le mot "islam" était considérée comme haineuse, à l'exception notable de "J'aime l'islam". De plus, le modèle différenciait les minuscules des majuscules. Une phrase considérée comme haineuse en minuscules n'était pas haineuse en majuscules.
+
+- Nous avons ensuite essayé de tuner le modèle `almanach/camembertav2-base`, mais les résultats étaient encore moins satisfaisants que le modèle précédent.
+
+- Afin d'améliorer la performance, nous avons augmenté le dataset d'entraînement à 10 000 éléments et retravaillé avec `distilbert-base-multilingual-cased`. Cependant, les résultats se sont encore détériorés, avec un biais persistant envers l'islam. Même la phrase "J'aime l'islam" était classée comme haineuse.
 
 ## Conclusion
 
@@ -104,3 +110,9 @@ Des améliorations potentielles pourraient inclure :
 - FastAPI
 - HTML, CSS, JavaScript
 - Torch (avec support `MPS` pour MacBook M1/M2`)
+
+## Participants
+
+- Samuel Wyckaert
+- Morgan Bazin
+- Théo Balzeau
